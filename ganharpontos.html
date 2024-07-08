@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ganhe Pontos!</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: url('https://media4.giphy.com/media/qnC994ffVKKo0076Q3/giphy.gif?cid=6c09b952wo820kthlot64yy9a8bis3k1xli66emkgfluu3jy&ep=v1_internal_gif_by_id&rid=giphy.gif&ct=g') no-repeat center center fixed;
+            background-size: cover;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            background: rgba(255, 255, 255, 0.85);
+            padding: 30px 50px;
+            border-radius: 15px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            border: 2px solid;
+            animation: borderColorChange 5s infinite;
+        }
+        @keyframes borderColorChange {
+            0% { border-color: rgb(255, 0, 0); }
+            25% { border-color: rgb(0, 255, 0); }
+            50% { border-color: rgb(0, 0, 255); }
+            75% { border-color: rgb(255, 255, 0); }
+            100% { border-color: rgb(255, 0, 255); }
+        }
+        h1 {
+            color: #333333;
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+        p {
+            color: #555555;
+            font-size: 18px;
+            margin-bottom: 20px;
+        }
+        .buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+        .button {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 10px 20px;
+            font-size: 14px;
+            color: #000000;
+            background-color: transparent;
+            border: none;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        .button img {
+            margin-bottom: 5px;
+            width: 24px;
+            height: 24px;
+        }
+        .button span {
+            font-size: 12px;
+            color: #555555;
+        }
+        .icon {
+            font-size: 40px;
+            color: #007bff;
+            margin-bottom: 10px;
+        }
+        .main-button {
+            display: inline-block;
+            padding: 12px 25px;
+            font-size: 16px;
+            color: #ffffff;
+            background-color: #007bff;
+            border: 2px solid;
+            border-radius: 5px;
+            text-decoration: none;
+            cursor: pointer;
+            transition: background-color 0.3s ease, border-color 5s infinite;
+            animation: borderColorChange 5s infinite;
+        }
+        .main-button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="icon">🎉</div>
+        <h1>Parabéns!</h1>
+        <p>Você ganhou 500 pontos! Clique no botão abaixo para adicionar os pontos à sua conta.</p>
+        <a href="javascript:void(0);" class="main-button" onclick="adicionarPontos()">Ganhar Pontos</a>
+        <div class="buttons">
+            <a href="https://api.whatsapp.com/send?phone=+5584999603600" class="button">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
+                WhatsApp
+                <span>Falar com suporte</span>
+            </a>
+            <a href="https://t.me/tubaraobetofc" class="button">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/8/82/Telegram_logo.svg" alt="Telegram">
+                Telegram
+                <span>Falar com suporte</span>
+            </a>
+        </div>
+    </div>
+
+    <script>
+        function adicionarPontos() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const userId = urlParams.get('user_id');
+            if (userId) {
+                fetch(`https://seu-bot-url/aqui?user_id=${userId}`)
+                    .then(response => response.json())
+                    .then(data => {
+                        alert("Pontos adicionados com sucesso!");
+                    })
+                    .catch(error => {
+                        console.error('Erro ao adicionar pontos:', error);
+                    });
+            } else {
+                alert('Erro: ID do usuário não encontrado.');
+            }
+        }
+    </script>
+</body>
+</html>
